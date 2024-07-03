@@ -1,24 +1,104 @@
-nome = "nome"
-idade = 18
+### Informações do cliente
+nome_cliente = "nome"
+idade_cliente = 18
 
+### Dados do vendedor
+contato_vendedor = "82 9999 8888"  # Contato formatado corretamente
+lojaname = "mundo10"  # Nome da loja
+
+### Informações do bot
+assistente_v = "muhahaha"  # Nome do bot
+
+### Perguntas
+tudo_bem = "sim"
+
+### Histórico de contatos
+historico_contatos = {}
+
+def registrar_contato(nome, data):
+    if nome not in historico_contatos:
+        historico_contatos[nome] = []
+    historico_contatos[nome].append(data)
+
+def verificar_recontato(nome):
+    if nome in historico_contatos and historico_contatos[nome]:
+        print(f"{nome}, esta não é a primeira vez que você entra em contato.")
+        resposta = input("Está tudo bem? (sim/não): ").strip().lower()
+        if resposta == "sim":
+            return True
+        else:
+            return False
+    return True
+
+### Consultar se houve atendimento anterior
+data_atendimento = "2023-12-19"
+
+### Características, detalhes e links
 link1 = "caracteristicas1"
 link2 = "caracteristicas2"
 link3 = "caracteristicas3"
 
+### Anúncios
 anuncio1 = "link1"
 anuncio2 = "link2"
 anuncio3 = "link3"
-opcoes = ["anuncio1", "anuncio2", "anuncio3"]
+opcoes = [anuncio1, anuncio2, anuncio3]
 
-print("Olá, sou o seu assistente virtual.")
-print(f"Qual o seu nome?")
+# Verifica se é a primeira vez do cliente ou se está tudo bem para prosseguir
+if verificar_recontato(nome_cliente):
+    # Início do atendimento
+    print(f"Bem vindo(a) a nossa loja: {lojaname}")
+    print(f"Olá, eu sou o {assistente_v}. Seu atendente virtual.")
 
-print(f"{nome},Qual a sua idade?")
-if idade >= 18:
-    print("Obrigado por essa informação.")
+    tudo_bem = input("Tudo bem? (Sim/Não): ").strip().lower()
+    if tudo_bem == "sim":
+        print("Legal!")
+    else:
+        print("Poxa, espero que tudo fique bem o mais rápido possível!")
+
+    nome = input(f"Qual o seu {nome_cliente}? ")
+
+    idade = int(input(f"Qual a sua idade, {nome}? "))
+    if idade >= 18:
+        print("Obrigado.")
+    else:
+        print("Como você é menor de idade, certifique-se de estar próximo do responsável para finalizar as suas compras.")
+
+    # Anúncios
+    print(f"Então, {nome}, temos as seguintes ofertas:")
+    while True:
+        print("1. Anúncio 1")
+        print("2. Anúncio 2")
+        print("3. Anúncio 3")
+
+        opcao = input(f"{nome}, digite o número do item que deseja ver (1, 2 ou 3): ")
+
+        if opcao == "1":
+            print(f"Aqui está o item 1: {anuncio1}")
+        elif opcao == "2":
+            print(f"Aqui está o item 2: {anuncio2}")
+        elif opcao == "3":
+            print(f"Aqui está o item 3: {anuncio3}")
+        else:
+            print("Opção inválida.")
+
+        # Perguntando se o usuário quer ver outro anúncio
+        continuar = input(f"{nome}, deseja ver outro anúncio? (sim/não): ").strip().lower()
+        if continuar != "sim":
+            break  # Sai do loop se o usuário não digitar "sim"
+
+    print("Obrigado por visualizar nossos anúncios!")
+
+    # Encerramento
+    duvida = input(f"{nome}, tem mais alguma dúvida? (Sim/Não): ").strip().lower()
+    while duvida == "sim":
+        print(f"{nome}, por favor entre em contato com o nosso atendimento especializado: {contato_vendedor}")
+        duvida = input(f"{nome}, tem mais alguma dúvida? (Sim/Não): ").strip().lower()
+
+    print("Agradeço seu contato, tenha um ótimo dia!")
+
+    registrar_contato(nome_cliente, data_atendimento)
+
 else:
-    print("Como vc é menor de idade, certifique-se de está proximo do responsavel e ter a autorização para finalizar as compras.")
-
-
-print(f"Entao, {nome}, como posso te ajudar?")
-print(opcoes)
+    # Se o cliente já entrou em contato antes e não está tudo bem
+    print(f"Por favor, entre em contato com o nosso atendimento especializado/humano para que possamos te ajudar: {contato_vendedor}.")
