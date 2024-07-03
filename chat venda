@@ -1,0 +1,24 @@
+nome = "nome"
+idade = 18
+
+link1 = "caracteristicas1"
+link2 = "caracteristicas2"
+link3 = "caracteristicas3"
+
+anuncio1 = "link1"
+anuncio2 = "link2"
+anuncio3 = "link3"
+opcoes = ["anuncio1", "anuncio2", "anuncio3"]
+
+print("Olá, sou o seu assistente virtual.")
+print(f"Qual o seu nome?")
+
+print(f"{nome},Qual a sua idade?")
+if idade >= 18:
+    print("Obrigado por essa informação.")
+else:
+    print("Como vc é menor de idade, certifique-se de está proximo do responsavel e ter a autorização para finalizar as compras.")
+
+
+print(f"Entao, {nome}, como posso te ajudar?")
+print(opcoes)
